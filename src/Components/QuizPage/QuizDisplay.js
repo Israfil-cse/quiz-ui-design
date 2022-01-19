@@ -7,7 +7,6 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
     const [error, setError] = useState('');
     const radiosWrapper = useRef();
 
-
     useEffect(() => {
         const findCheckedInput = radiosWrapper.current.querySelector('input:checked');
         if (findCheckedInput) {
@@ -30,7 +29,10 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
         setSelected('');
         if (activeQuestion < numberOfQuestions - 1) {
             onSetActiveQuestion(activeQuestion + 1);
-        } 
+        }
+        if (activeQuestion === numberOfQuestions - 1 ) {
+            return alert('quiz finished');
+        }
     }
 
 
