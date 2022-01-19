@@ -1,0 +1,31 @@
+@import './variable.scss';
+
+.quiz_container {
+    
+    .quiz_iteam {
+        width: 30%;
+        background: $backgroundColor;
+        padding: 10px 30px;
+        display: flex;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+
+        span {
+            margin-left: 40px;
+        }
+
+        &:focus {
+            background: $btnColor;
+            color: $whiteColor;
+        }
+
+        &:hover {
+            background: $btnColor;
+            color: $whiteColor;
+        }
+
+    }
+
+
+}
