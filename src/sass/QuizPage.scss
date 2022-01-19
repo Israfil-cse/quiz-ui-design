@@ -1,0 +1,11 @@
+@import './variable.scss';
+
+.quiz_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    .h2{
+        color: $quizTitlesColor;
+    }
+}

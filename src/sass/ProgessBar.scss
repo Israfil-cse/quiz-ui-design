@@ -1,0 +1,29 @@
+@import './variable.scss';
+
+.Progress_container {
+    padding-top: 20px;
+
+    .Progress_Status {
+        width: 95%;
+        height: 8px;
+        background-color: $backgroundColor;
+        margin: 0px auto;
+    }
+
+    .myprogressBar {
+        width: 10%;
+        height: 8px;
+        background-color: $progrssColor;
+        text-align: center;
+        line-height: 32px;
+        color: $blackColor;
+    }
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 18px;
+        color: $quizTitlesColor;
+    }
+
+}
