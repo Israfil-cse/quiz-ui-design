@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../../sass/QuizDisplay.scss';
 
-const QuizDisplay = ({ data, onAnswerUpdate, numberOfQuestions, activeQuestion, onSetActiveQuestion, onSetStep }) => {
+const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuestion}) => {
+    console.log(numberOfQuestions, activeQuestion);
     const [selected, setSelected] = useState('');
     const [error, setError] = useState('');
     const radiosWrapper = useRef();
+
+
     useEffect(() => {
         const findCheckedInput = radiosWrapper.current.querySelector('input:checked');
         if (findCheckedInput) {
@@ -23,24 +26,22 @@ const QuizDisplay = ({ data, onAnswerUpdate, numberOfQuestions, activeQuestion, 
         if (selected === '') {
             return setError('Please select one option!');
         }
-        onAnswerUpdate(prevState => [...prevState, { q: data.question, a: selected }]);
+
         setSelected('');
         if (activeQuestion < numberOfQuestions - 1) {
             onSetActiveQuestion(activeQuestion + 1);
-        } else {
-            onSetStep(3);
-        }
+        } 
     }
 
 
     return (
 
-        <div className="">
-            <div>
+        <div>
+            <div className="title">
                 <h2 className="mb-5">{data.question}</h2>
             </div>
 
-            <div className="" ref={radiosWrapper}>
+            <div ref={radiosWrapper}>
 
                 {data.choices.map((choice, i) => (
                     <div className="quiz_container">
@@ -54,7 +55,7 @@ const QuizDisplay = ({ data, onAnswerUpdate, numberOfQuestions, activeQuestion, 
 
             </div>
 
-            {error && <div className="has-text-danger">{error}</div>}
+            {error && <div className="error">{error}</div>}
 
             <div className="quiz-btn ">
                 <button >Previous</button>
