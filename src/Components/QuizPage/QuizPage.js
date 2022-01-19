@@ -1,40 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../sass/QuizPage.scss';
 
-import fakeData from '../../fakeData/fakeData.json'
+import quizData from '../../fakeData/fakeData.json'
 import QuizDisplay from './QuizDisplay';
 
-const data = [
-    {
-        answer: 'mark zokerbag'
-    },
-    {
-        answer: 'dark zokerbag'
-    },
-    {
-        answer: 'pak zokerbag'
-    },
-    {
-        answer: 'lack zokerbag'
-    }
-]
 
 const QuizPage = () => {
+    const [activeQuestion, setActiveQuestion] = useState(0);
+    const [answers, setAnswers] = useState([]);
+
     return (
         <>
             <div className='quiz_container'>
-                <h2>Which is a synonym of bellicose ? </h2>
-            </div>
-
-            <div>
-                {
-                    data.map((item) => <QuizDisplay iteam={item} key={item.answer}></QuizDisplay>)
-                }
-            </div>
-
-            <div className="quiz-btn ">
-                <button >Previous</button>
-                <button className ="next_btn">Next</button>
+                <QuizDisplay
+                    data={quizData.data[activeQuestion]}
+                    onAnswerUpdate={setAnswers}
+                    numberOfQuestions={quizData.data.length}
+                    activeQuestion={activeQuestion}
+                    onSetActiveQuestion={setActiveQuestion}
+                />
             </div>
 
         </>

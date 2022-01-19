@@ -1,8 +1,6 @@
-import React from 'react';
 import '../../sass/Home.scss';
 import ProgrssBar from '../ProgessBar/ProgrssBar';
 import QuizPage from '../QuizPage/QuizPage';
-
 
 const Home = () => {
     return (

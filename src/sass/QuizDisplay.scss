@@ -1,20 +1,20 @@
 @import './variable.scss';
 
 .quiz_container {
-    
+
     .quiz_iteam {
-        width: 30%;
+        width: 50%;
         background: $backgroundColor;
         padding: 10px 30px;
         display: flex;
+        // justify-content: space-between;
         border-radius: 10px;
         cursor: pointer;
         border: none;
-
-        span {
+        
+        span{
             margin-left: 40px;
         }
-
         &:focus {
             background: $btnColor;
             color: $whiteColor;
@@ -25,6 +25,25 @@
             color: $whiteColor;
         }
 
+    }
+
+    .quiz-btn {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .quiz-btn button {
+        border: none;
+        height: 35px;
+        width: 95px;
+        border-radius: 20px;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    .next_btn {
+        background: linear-gradient(335.64deg, #FF589B -19.22%, #FF136F 118.87%);
     }
 
 
