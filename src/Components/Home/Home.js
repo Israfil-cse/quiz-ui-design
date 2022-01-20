@@ -1,14 +1,20 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-// import { progressContext } from '../../App';
+import { useEffect, useState } from 'react';
 import '../../sass/Home.scss';
 import ProgrssBar from '../ProgessBar/ProgrssBar';
 import QuizPage from '../QuizPage/QuizPage';
-import quizData from '../../fakeData/fakeData.json'
+import quizData from '../../fakeData/fakeData.json';
+import Result from '../Result/Result';
+
+
 
 
 const Home = () => {
     const [activeQuestion, setActiveQuestion] = useState(0)
     const [answers, setAnswers] = useState([]);
+    // console.log(answers);
+
+    const [step, setStep] = useState(2);
+    const [time, setTime] = useState(0);
 
 
     // useEffect(() => {
@@ -26,6 +32,34 @@ const Home = () => {
     //         });
     // }, [])
 
+    const [checkAns , setCheckAns] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/listData')
+        .then(response => response.json())
+        .then(result => {
+            setCheckAns(result);
+        })
+    },[])
+
+    let interval;
+    useEffect(() => {
+        if (step === 3) {
+            clearInterval(interval);
+        }
+    }, [step]);
+
+    const CheckResultHandler = () => {
+        setActiveQuestion(0);
+        setAnswers('');
+        setStep(2);
+
+        interval = setInterval(() => {
+            setTime(prevTime => prevTime + 1);
+        }, 1000);
+    }
+
+
     return (
 
         <div className="home_container">
@@ -35,16 +69,32 @@ const Home = () => {
                     activeQuestion={activeQuestion}
                 />
 
-                <QuizPage
-                    data={quizData.data[activeQuestion]}
-                    activeQuestion={activeQuestion}
-                    onAnswerUpdate={setAnswers}
-                    numberOfQuestions={quizData.data.length}
-                    onSetActiveQuestion={setActiveQuestion}
-                />
+                {step === 2 &&
+                    <QuizPage
+                        data={quizData.data[activeQuestion]}
+                        activeQuestion={activeQuestion}
+                        onAnswerUpdate={setAnswers}
+                        numberOfQuestions={quizData.data.length}
+                        onSetActiveQuestion={setActiveQuestion}
+                        results={answers}
+                        onSetStep={setStep}
+                        onCheck ={checkAns}
+
+                    />
+                }
+
+                {step === 3 && <Result
+
+                    results={answers}
+                    data={quizData.data}
+                    onCheck={CheckResultHandler}
+
+                    />}
 
             </div>
         </div>
+
+
 
     );
 };

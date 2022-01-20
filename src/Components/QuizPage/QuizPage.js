@@ -3,8 +3,8 @@ import '../../sass/QuizPage.scss';
 import QuizDisplay from './QuizDisplay';
 
 
-const QuizPage = ({ data, onAnswerUpdate, numberOfQuestions , activeQuestion, onSetActiveQuestion}) => {
-
+const QuizPage = ({ data, onAnswerUpdate, numberOfQuestions , activeQuestion, onSetActiveQuestion,results, onSetStep , onCheck }) => {
+    // console.log(data);
     return (
         <>
             <div className='quiz_container'>
@@ -14,6 +14,9 @@ const QuizPage = ({ data, onAnswerUpdate, numberOfQuestions , activeQuestion, on
                     onAnswerUpdate={onAnswerUpdate}
                     numberOfQuestions={numberOfQuestions}
                     onSetActiveQuestion={onSetActiveQuestion}
+                    results={results}
+                    onSetStep={onSetStep}
+                    onCheck ={onCheck}
                 />
             </div>
 
