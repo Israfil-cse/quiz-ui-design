@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState, createRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../../sass/QuizDisplay.scss';
 
-const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuestion }) => {
-    console.log(numberOfQuestions, activeQuestion);
+const QuizDisplay = ({data,numberOfQuestions,activeQuestion, onSetActiveQuestion }) => {
+
     const [selected, setSelected] = useState('');
     const [error, setError] = useState('');
-    const checkboxref  = createRef();
+    const checkboxref = useRef(null);
 
     useEffect(() => {
         const findCheckedInput = checkboxref.current.querySelector('input:checked');
@@ -47,7 +47,6 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
 
         }
 
-
     }
 
 
@@ -67,9 +66,7 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
                             <span>{choice}</span>
                         </label>
                     </div>
-
                 ))}
-
             </div>
 
             {error && <div className="error">{error}</div>}
@@ -78,7 +75,6 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
                 <button onClick={PrevClickHadler} >Previous</button>
                 <button className="next_btn" onClick={nextClickHandler}>Next</button>
             </div>
-
 
         </div>
     );

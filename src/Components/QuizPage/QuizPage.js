@@ -1,25 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import '../../sass/QuizPage.scss';
-
-import quizData from '../../fakeData/fakeData.json'
 import QuizDisplay from './QuizDisplay';
-import { progressContext } from '../../App';
 
 
-
-const QuizPage = () => {
-    const [activeQuestion, setActiveQuestion] = useContext(progressContext);
-    const [answers, setAnswers] = useState([]);
+const QuizPage = ({ data, onAnswerUpdate, numberOfQuestions , activeQuestion, onSetActiveQuestion}) => {
 
     return (
         <>
             <div className='quiz_container'>
                 <QuizDisplay
-                    data={quizData.data[activeQuestion]}
-                    onAnswerUpdate={setAnswers}
-                    numberOfQuestions={quizData.data.length}
+                    data={data}
                     activeQuestion={activeQuestion}
-                    onSetActiveQuestion={setActiveQuestion}
+                    onAnswerUpdate={onAnswerUpdate}
+                    numberOfQuestions={numberOfQuestions}
+                    onSetActiveQuestion={onSetActiveQuestion}
                 />
             </div>
 
