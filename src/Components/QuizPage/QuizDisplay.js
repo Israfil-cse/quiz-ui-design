@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../../sass/QuizDisplay.scss';
 
-const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuestion}) => {
+const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuestion }) => {
     console.log(numberOfQuestions, activeQuestion);
     const [selected, setSelected] = useState('');
     const [error, setError] = useState('');
@@ -30,9 +30,24 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
         if (activeQuestion < numberOfQuestions - 1) {
             onSetActiveQuestion(activeQuestion + 1);
         }
-        if (activeQuestion === numberOfQuestions - 1 ) {
+        if (activeQuestion === numberOfQuestions - 1) {
             return alert('quiz finished');
         }
+    }
+
+
+    const PrevClickHadler = (e) => {
+
+        if (activeQuestion < numberOfQuestions - 1) {
+            onSetActiveQuestion(activeQuestion - 1);
+        }
+        if (activeQuestion === 0) {
+
+            return alert('frist one');
+
+        }
+
+
     }
 
 
@@ -46,7 +61,7 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
             <div ref={radiosWrapper}>
 
                 {data.choices.map((choice, i) => (
-                    <div className="quiz_container">
+                    <div className=" quiz_container">
                         <label className="quiz_iteam" key={i}>
                             <input type="radio" name="answer" value={choice} onChange={changeHandler} />
                             <span>{choice}</span>
@@ -60,7 +75,7 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
             {error && <div className="error">{error}</div>}
 
             <div className="quiz-btn ">
-                <button >Previous</button>
+                <button onClick={PrevClickHadler} >Previous</button>
                 <button className="next_btn" onClick={nextClickHandler}>Next</button>
             </div>
 

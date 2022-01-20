@@ -33,7 +33,7 @@ const ProgrssBar = () => {
             </div>
 
             <div className="title">
-                <small>Quiz No 1</small>
+                <small>Quiz No {activeQuestion + 1}</small>
                 <small>Question out of 9</small>
             </div>
         </div>
