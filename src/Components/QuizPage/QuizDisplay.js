@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, createRef } from 'react';
 import '../../sass/QuizDisplay.scss';
 
 const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuestion }) => {
     console.log(numberOfQuestions, activeQuestion);
     const [selected, setSelected] = useState('');
     const [error, setError] = useState('');
-    const radiosWrapper = useRef();
+    const checkboxref  = createRef();
 
     useEffect(() => {
-        const findCheckedInput = radiosWrapper.current.querySelector('input:checked');
+        const findCheckedInput = checkboxref.current.querySelector('input:checked');
         if (findCheckedInput) {
             findCheckedInput.checked = false;
         }
@@ -39,10 +39,10 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
     const PrevClickHadler = (e) => {
 
         if (activeQuestion < numberOfQuestions - 1) {
+            setError('');
             onSetActiveQuestion(activeQuestion - 1);
         }
-        if (activeQuestion === 0) {
-
+        if (activeQuestion === 1) {
             return alert('frist one');
 
         }
@@ -58,12 +58,12 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
                 <h2 className="mb-5">{data.question}</h2>
             </div>
 
-            <div ref={radiosWrapper}>
+            <div ref={checkboxref }>
 
                 {data.choices.map((choice, i) => (
-                    <div className=" quiz_container">
-                        <label className="quiz_iteam" key={i}>
-                            <input type="radio" name="answer" value={choice} onChange={changeHandler} />
+                    <div className=" quiz_container" key={i}>
+                        <label className="quiz_iteam" >
+                            <input type="checkbox" name="answer" value={choice} onChange={changeHandler} />
                             <span>{choice}</span>
                         </label>
                     </div>
