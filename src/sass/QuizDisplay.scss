@@ -12,18 +12,41 @@
         border-radius: 10px;
         cursor: pointer;
         border: none;
-        
-        span{
+
+        span {
             margin-left: 40px;
         }
+
         &:focus-within {
-            background: $btnColor;
-            color: $whiteColor;
+            background: #4289FF;
+            color: white;
         }
 
         &:hover {
-            background: $btnColor;
-            color: $whiteColor;
+            background: #4289FF;
+            color: white;
+        }
+
+        & input[type="radio"] {
+            appearance: none;
+            border-radius: 5px;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid gray;
+            transition: 0.2s all linear;
+            &:checked {
+                border: 2px solid white;
+                outline: unset;
+                &::before{
+                    content: '✔';
+                    font-size: 1rem;
+                    color: white;
+                    font-weight: 700;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                }
         }
 
     }
@@ -49,10 +72,8 @@
 
 
 }
-.error{
+
+.error {
     text-align: center;
     margin-top: 5px;
 }
-
-
-

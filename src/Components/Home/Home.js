@@ -11,10 +11,9 @@ import Result from '../Result/Result';
 const Home = () => {
     const [activeQuestion, setActiveQuestion] = useState(0)
     const [answers, setAnswers] = useState([]);
-    // console.log(answers);
-
+    console.log(answers);
     const [step, setStep] = useState(2);
-    const [time, setTime] = useState(0);
+
 
 
     // useEffect(() => {
@@ -34,13 +33,14 @@ const Home = () => {
 
     const [checkAns , setCheckAns] = useState([])
 
-    useEffect(() => {
-        fetch('http://localhost:5000/listData')
-        .then(response => response.json())
-        .then(result => {
-            setCheckAns(result);
-        })
-    },[])
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/listData')
+    //     .then(response => response.json())
+    //     .then(result => {
+    //         setCheckAns(result);
+    //     })
+    // },[])
+
 
     let interval;
     useEffect(() => {
@@ -55,7 +55,7 @@ const Home = () => {
         setStep(2);
 
         interval = setInterval(() => {
-            setTime(prevTime => prevTime + 1);
+
         }, 1000);
     }
 

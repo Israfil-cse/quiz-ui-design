@@ -25,42 +25,30 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
         if (selected === '') {
             return setError('Please select one option!');
         }
-        onAnswerUpdate(prevState => [...prevState, { q: data.question, a: selected }]);
-        setSelected('');
-        if (activeQuestion < numberOfQuestions - 1) {
+        if (activeQuestion < numberOfQuestions) {
+
             onSetActiveQuestion(activeQuestion + 1);
         }
+
+
+        onAnswerUpdate(prevState => [...prevState, { q: data.question, a: selected }]);
+        setSelected('');
+
 
     }
 
 
     const PrevClickHadler = (e) => {
 
-        if (activeQuestion < numberOfQuestions - 1) {
-            setError('');
+        if (activeQuestion < numberOfQuestions) {
+
             onSetActiveQuestion(activeQuestion - 1);
         }
-        if (activeQuestion === 1) {
-            return alert('frist one');
 
-        }
 
     }
 
     const handleSubmit = () => {
-
-        // fetch('http://localhost:5000/addData', {
-        //     method: 'POST',
-        //     headers: { "content-type": "application/json" },
-        //     body: JSON.stringify({ data: results })
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if (data) {
-        //             alert('data submitted successfully')
-        //             onSetStep(3)
-        //         }
-        //     })
         onSetStep(3)
 
     }
@@ -72,33 +60,33 @@ const QuizDisplay = ({ data, numberOfQuestions, activeQuestion, onSetActiveQuest
     return (
 
         <div>
-            
 
-                <div>
-                    <div className="title">
-                        <h2 className="mb-5">{data.question}</h2>
-                    </div>
 
-                    <div ref={checkboxref}>
-
-                        {
-                            data.choices.map((choice, i) => (
-                                <div className=" quiz_container" key={i}>
-                                    <label className="quiz_iteam" >
-                                        <input type="checkbox" name="answer" value={choice} onChange={changeHandler} />
-                                        <span>{choice}</span>
-                                    </label>
-                                </div>
-                            ))}
-                    </div>
+            <div>
+                <div className="title">
+                    <h2 className="mb-5">{data?.question}</h2>
                 </div>
 
-            
+                <div ref={checkboxref}>
 
+                    {
+                        data.choices.map((choice, i) => (
+                            <div className=" quiz_container" key={i}>
+                                <label className="quiz_iteam" >
+                                    <input type="radio" name="answer" value={choice} onChange={changeHandler} />
+                                    <span>{choice}</span>
+                                </label>
+                            </div>
+                        ))}
+                </div>
+            </div>
             {error && <div className="error">{error}</div>}
 
             <div className="quiz-btn ">
-                <button onClick={PrevClickHadler} >Previous</button>
+                {activeQuestion !== 0 &&
+                    <button onClick={PrevClickHadler} >Previous</button>
+                }
+
                 {
                     activeQuestion === numberOfQuestions - 1 ?
                         <button className="next_btn" onClick={handleSubmit}>Submit</button>
