@@ -1,9 +1,8 @@
 import '../../sass/ProgessBar.scss';
 
 const ProgrssBar = ({numberOfQuestions, activeQuestion}) => {
-
     const avgPro = ((activeQuestion)  * (100) /  (numberOfQuestions ) )
-    console.log(activeQuestion, avgPro);
+    // console.log(activeQuestion, avgPro);
 
     const myprogressBar = {
         width: `${avgPro}%`,
@@ -23,7 +22,7 @@ const ProgrssBar = ({numberOfQuestions, activeQuestion}) => {
 
             <div className="title">
                 <small>Quiz No {activeQuestion + 1}</small>
-                <small>Question {activeQuestion + 1} out of {numberOfQuestions}</small>
+                <small>Question {activeQuestion } out of {numberOfQuestions}</small>
             </div>
         </div>
     );

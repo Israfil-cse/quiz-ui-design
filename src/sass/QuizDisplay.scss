@@ -1,10 +1,16 @@
 @import './variable.scss';
 
 
+.title p { 
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+ 
+}
 .quiz_container {
 
     .quiz_iteam {
-        width: 50%;
+        width: 300px;
         background: $backgroundColor;
         padding: 10px 30px;
         display: flex;
@@ -15,6 +21,7 @@
 
         span {
             margin-left: 40px;
+            
         }
 
         &:focus-within {

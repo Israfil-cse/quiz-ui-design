@@ -9,37 +9,38 @@ import Result from '../Result/Result';
 
 
 const Home = () => {
+
+    const [QuizData, setQuizData] = useState([]);
+    // console.log(QuizData);
+
+
     const [activeQuestion, setActiveQuestion] = useState(0)
     const [answers, setAnswers] = useState([]);
-    console.log(answers);
     const [step, setStep] = useState(2);
 
+    const token = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsIl9pZCI6IjYxZWMwMWQxNDc4OGEwMDRlZTNjN2Y0ZiIsInN0YXR1cyI6ImluX3Byb2dyZXNzIiwic3ViIjoiNjFlYzAxZDE0Nzg4YTAwNGVlM2M3ZjRmIiwiaWF0IjoxNjQyODU3MTE5LjQ5Nn0.JV9bx8OCMyOU0r-vMzZfdYULoHeUMrN_UC5-3zWvZMLSp6n8R8vwITp2vTtF8gRRv7H4VE2eA-iljYmWUjKsByXGW9YKoJaZe-lJcYfrTs13QgKnBa05G57KAiEjMLWVQqKS7b5JF_8esoM1i0-wVwzm0yvYe-4HZIUiDHElQ5fiV8-xoPslUCyOdUDZLyu1JRuWB5jRolLILAsAwV9CdIWuHegY_mdrgBbk7hlPaB5g4nLEpfwiMT14LetJATuTXWM3xxDpexrGVaC8bojbfPWoDgw7qtOshG2_u4Yut7HCQJNa3vQTFDbZPFww07hx6-akIV7y6trxamAWviJpmVCIBSefVnyLroz648bUlex-foUNIP--2zVjaXJelP0Fmnt3M8V5lV0kL-o1GHhWLJkkyVTUIrIe1cxX7p93CzQBvWWmjJhlk4Vkfg64-vKWc6x2QCc-3pv6h51wp3p-HOwTuSyW7C_rxhbHSgjlF8GKKuMERk5sScpXogE9c5RV3jfeswTRhmZ5UeQMtUNMEq63qhh04yXN-AuWfxUYadJh9NseKStYyF-Q0CgiKhanX-2M53YqXEVsF684_3G4hxOfCpLgn2wMmQZuVOHZ8gX7okHtjB-qgFJTmKeczC1vUkxTV90ECeqaWlwzUn7DsCMGg8C2mJF437bwVg_rgiw"
+
+    // const api = "https://jsdude.com/api/unit/get-unit-content/quiz-task-quiz-israfil-?filterType=slug"
+
+    const api2 = "https://jsdude.com/api/unit/get-unit-content/quiz-task-basic-quiz-1?filterType=slug"
 
 
-    // useEffect(() => {
-    //     fetch("http://jsdude.com/api/unit/get-unit-content/quiz-task-basic-quiz-1?filterType=slug", {
-    //         headers: 
-    //             {
-    //             'Authorization': `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsIl9pZCI6IjYxZTdhNWUzZWFjOTU2MGYwMDlkM2VmYiIsInN0YXR1cyI6ImluX3Byb2dyZXNzIiwic3ViIjoiNjFlN2E1ZTNlYWM5NTYwZjAwOWQzZWZiIiwiaWF0IjoxNjQyNTcyMDgzLjAwOH0.KlwsNNEkSYwVizlQV7LcXQv0qDJwjhC_uF5wKcYpWr4ppRc1qGVdPD6IIAFab3ryvYw1XZfF7itVbRob_ZuuI8KqlSafhkr4WnvHI1_B_1dSLmIqHIv0WgyVENzEzBQ1gea_3jopnjOP7ZHp-Wepy9KZcpnaFJP6_YubJ96MNOhYMGApMUDbQWfpkg_qAg_9GLCmNxBy3FZZJYBWCqn9ZsBaplrhqDNNWRnryxj2rw_oTQcEu36FSaJZAQDSGPsfZ2IyhH7C6XqmL5Wz5ZkwoPtZY711WDVvM91RMDveN9BuUqrkCljr4DqRjlECENVK6882Ezf4syxwQm08SGhSjbY0ncQ3t1K-dfrIQumFphgFHkm7Rj5dd8vpdhZAakZGpDgou0wX5WPe3_9xIXnNdN6V3m_LHEKkdV_dX6N_GOO7sxeU-nXVrvBg70E9CfFse4AlyM6oYAB7vl1q9ufcYuG-y8z1VKBSGtOzR2xbsOPo_uOVm_DhOhtmcjhwbcGIIaQugo9t5vCJPaA_rRYn7ho5irWsb9LzcefbFwtRIbu-kVqHfNrkaO0z34GO0TPFnM6BJnc7PP6Z_S5M1YF7M5yMwK5GClcEyCuu_VEdhtH-M5ylqaEWuwZKnVL5pUQoVHaNG_chHO6SrR31eSKYlZT7YQ384ixOsgUiMCBkrps`
-    //          }
+    useEffect(() => {
+        fetch(api2, {
+            headers:
+            {
+                'Authorization': token
+            }
 
-    //     })
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             setQuizData(result);
+        })
+            .then(response => response.json())
+            .then(result => {
+                setQuizData(result);
+                // console.log(result?.data[0]?.quizQuestionIdArray[check]);
 
-    //         });
-    // }, [])
+            });
+    }, [])
 
-    const [checkAns , setCheckAns] = useState([])
-
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/listData')
-    //     .then(response => response.json())
-    //     .then(result => {
-    //         setCheckAns(result);
-    //     })
-    // },[])
 
 
     let interval;
@@ -65,20 +66,20 @@ const Home = () => {
         <div className="home_container">
             <div className="content_aria">
                 <ProgrssBar
-                    numberOfQuestions={quizData.data.length}
+                    numberOfQuestions={QuizData?.data?.[0]?.quizQuestionIdArray?.length}
                     activeQuestion={activeQuestion}
                 />
 
                 {step === 2 &&
                     <QuizPage
-                        data={quizData.data[activeQuestion]}
+                        data={QuizData?.data?.[0]?.quizQuestionIdArray[activeQuestion]}
+                        numberOfQuestions={QuizData?.data?.[0]?.quizQuestionIdArray?.length}
                         activeQuestion={activeQuestion}
                         onAnswerUpdate={setAnswers}
-                        numberOfQuestions={quizData.data.length}
-                        onSetActiveQuestion={setActiveQuestion}
                         results={answers}
+                        onSetActiveQuestion={setActiveQuestion}
                         onSetStep={setStep}
-                        onCheck ={checkAns}
+
 
                     />
                 }
@@ -86,10 +87,10 @@ const Home = () => {
                 {step === 3 && <Result
 
                     results={answers}
-                    data={quizData.data}
+                    data={QuizData?.data?.[0]?.quizQuestionIdArray}
                     onCheck={CheckResultHandler}
 
-                    />}
+                />}
 
             </div>
         </div>
