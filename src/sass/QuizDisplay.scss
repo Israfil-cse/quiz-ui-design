@@ -1,16 +1,39 @@
 @import './variable.scss';
 
-
-.title p { 
-    font-weight: bold;
-    font-size: 18px;
-    text-align: center;
- 
-}
 .quiz_container {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    .sucess{
+
+        background-color: green !important;
+        &::before {
+            content: '✔';
+            font-size: 1rem;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            
+        }
+        
+        
+
+    }
+    .hidden{
+        background: red !important;
+        
+    }
     .quiz_iteam {
-        width: 300px;
+        .content{
+            margin-left: 30px;
+        }
+        width: 400px;
+        height: 30px;
         background: $backgroundColor;
         padding: 10px 30px;
         display: flex;
@@ -18,11 +41,7 @@
         border-radius: 10px;
         cursor: pointer;
         border: none;
-
-        span {
-            margin-left: 40px;
-            
-        }
+        margin-top: 10px;
 
         &:focus-within {
             background: #4289FF;
@@ -41,10 +60,12 @@
             height: 1.5rem;
             border: 2px solid gray;
             transition: 0.2s all linear;
+
             &:checked {
                 border: 2px solid white;
                 outline: unset;
-                &::before{
+
+                &::before {
                     content: '✔';
                     font-size: 1rem;
                     color: white;
@@ -53,29 +74,12 @@
                     justify-content: center;
                     align-items: center;
                 }
-                }
+            }
         }
 
     }
 
-    .quiz-btn {
-        display: flex;
-        justify-content: center;
-        padding: 10px;
-    }
 
-    .quiz-btn button {
-        border: none;
-        height: 35px;
-        width: 95px;
-        border-radius: 20px;
-        margin: 10px;
-        cursor: pointer;
-    }
-
-    .next_btn {
-        background: linear-gradient(335.64deg, #FF589B -19.22%, #FF136F 118.87%);
-    }
 
 
 }

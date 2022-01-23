@@ -1,7 +1,27 @@
 @import './variable.scss';
 
-.quiz_container{
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+.quiz-page-container {
+    .title {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .quiz-btn {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .quiz-btn button {
+        border: none;
+        height: 35px;
+        width: 95px;
+        border-radius: 20px;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    .next_btn {
+        background: linear-gradient(335.64deg, #FF589B -19.22%, #FF136F 118.87%);
+    }
 }
