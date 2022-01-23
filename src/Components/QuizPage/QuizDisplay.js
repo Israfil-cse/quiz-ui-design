@@ -5,16 +5,13 @@ import '../../sass/QuizDisplay.scss';
 const QuizDisplay = ({ choice, OnChangeHandler, QzIndex, ref, numberOfQuestions, activeQuestion, onSetActiveQuestion, onAnswerUpdate, results, onSetStep, historyData }) => {
     const isCorrect = historyData?.correctIndex === QzIndex;
     const isWrong = historyData?.wrongIndex === QzIndex;
-    // const alhamdulilah = style={{backgroundColor: isCorrect && 'green' || isWrong && 'red'  }}
-
 
     return (
 
         <div>
-
             <div className='quiz_container'>
 
-                <label className={`quiz_iteam ${isCorrect && "sucess" || isWrong && "hidden"}`}>
+                <label className={`quiz_iteam ${isCorrect && "sucess" || isWrong && "hidden"}`} style={{pointerEvents: historyData && "none"}}>
                     <div>
                         <input type="radio" name="answer" value={choice} onChange={() => OnChangeHandler(QzIndex)} />
                     </div>

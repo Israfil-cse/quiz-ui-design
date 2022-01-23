@@ -6,7 +6,7 @@ import ProgrssBar from '../ProgessBar/ProgrssBar';
 import { useLocation } from 'react-router-dom';
 
 
-const QuizPage = ({ QzData, activeQuestion, onSetActiveQuestion, onAnswerUpdate, numberOfQuestions, results, token, onSetProgress, progess, historyData, onsetHistoryQuz, historyQuz }) => {
+const QuizPage = ({ QzData, activeQuestion, onSetActiveQuestion, onAnswerUpdate, numberOfQuestions, results, token, onSetProgress, progess, historyData, onsetHistoryQuz, historyQuz, lodding }) => {
 
 
 
@@ -99,15 +99,21 @@ const QuizPage = ({ QzData, activeQuestion, onSetActiveQuestion, onAnswerUpdate,
                 activeQuestion={activeQuestion}
                 progess={progess}
             />
+            {lodding ?
+                <p className ='loading_text' >loding......</p>
+                :
+                <p className="title">
+                    {parse(`${QzData?.question}`)}
+                </p>
+            }
 
-            <p className="title">
-                {parse(`${QzData?.question}`)}
-            </p>
+
 
             <div ref={checkboxref} className='quiz_content'>
                 {
-                    QzData?.options.map((choice, i) => (
+                    QzData?.options?.map((choice, i) => (
                         <div key={i} >
+
                             <QuizDisplay
                                 choice={choice}
                                 QzIndex={i}
@@ -117,10 +123,12 @@ const QuizPage = ({ QzData, activeQuestion, onSetActiveQuestion, onAnswerUpdate,
                                 historyData={historyData}
 
                             />
+
                         </div>
                     ))
                 }
             </div>
+
 
             <div className="btn-section">
                 <div className="quiz-btn ">
@@ -132,11 +140,11 @@ const QuizPage = ({ QzData, activeQuestion, onSetActiveQuestion, onAnswerUpdate,
                         activeQuestion === numberOfQuestions - 1 ?
 
                             <div>
-                            {location.pathname === ("/checkOut") ? <span></span>
-                            
-                             :
-                                <button className="next_btn" onClick={() => { HandleSubmit(); ProProgressBarHandler() }} >Submit</button>
-                            }
+                                {location.pathname === ("/checkOut") ? <span></span>
+
+                                    :
+                                    <button className="next_btn" onClick={() => { HandleSubmit(); ProProgressBarHandler() }} >Submit</button>
+                                }
                             </div>
                             :
 
@@ -148,6 +156,7 @@ const QuizPage = ({ QzData, activeQuestion, onSetActiveQuestion, onAnswerUpdate,
 
 
             </div>
+
 
         </div>
 

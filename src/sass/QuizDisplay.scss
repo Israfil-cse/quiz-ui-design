@@ -14,10 +14,8 @@
             font-size: 1rem;
             color: white;
             font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: absolute;
+            margin-left: 10px;
             
         }
         
@@ -26,7 +24,16 @@
     }
     .hidden{
         background: red !important;
-        
+        &::before {
+            content: '☓';
+            font-size: 1rem;
+            color: white;
+            font-weight: 700;
+            position: absolute;
+            margin-left: 10px;
+            
+        }
+
     }
     .quiz_iteam {
         .content{

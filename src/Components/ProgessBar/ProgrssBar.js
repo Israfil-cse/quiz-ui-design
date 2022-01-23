@@ -1,11 +1,16 @@
+import { useLocation } from 'react-router-dom';
 import '../../sass/ProgessBar.scss';
 
 const ProgrssBar = ({numberOfQuestions, activeQuestion, progess}) => {
+    console.log(progess);
     const avgPro = ((progess)  * (100) /  (numberOfQuestions ) )
-    console.log(numberOfQuestions, activeQuestion, progess);
+    const checkOutpathAvgPro = ((progess + 1)  * (100) /  (numberOfQuestions ) )
+    const location = useLocation();
+    const checkOutpath = location.pathname === ("/checkOut");
 
+   
     const myprogressBar = {
-        width: `${avgPro}%`,
+        width: `${checkOutpath? checkOutpathAvgPro : avgPro}%`,
         height: `12px`,
         backgroundColor: `#3AC55A`,
         textAlign: `center`,
